@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 
 namespace SeleniumCore
 {
@@ -33,13 +34,12 @@ namespace SeleniumCore
             var passwordField = _driver.FindElement(By.Id("password"));
             var loginButton = _driver.FindElement(loginButtonLocator);
 
-            userNameField.SendKeys("standart_user");
+            userNameField.SendKeys("standard_user");
             passwordField.SendKeys("secret_sauce");
             loginButton.Click();
 
-
-
             Assert.IsTrue(_driver.Url.Contains("inventory.html"));
+
         }
 
         [TestCleanup]
