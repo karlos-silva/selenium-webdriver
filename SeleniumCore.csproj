@@ -19,4 +19,9 @@
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.1.52-beta" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Pages\" />
+  </ItemGroup>
+
 </Project>

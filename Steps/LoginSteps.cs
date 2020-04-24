@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using SeleniumCore.Hooks;
 using SeleniumExtras.WaitHelpers;
 using System;
 using System.IO;
@@ -11,17 +12,19 @@ using TechTalk.SpecFlow;
 namespace SeleniumCore.Steps
 {
     [Binding]
-    public class LoginSteps
+    public class LoginSteps 
     {
 
         IWebDriver _driver;
+        public LoginSteps(ScenarioContext scenarioContext)
+        {
+            _driver = scenarioContext["WEB_DRIVER"] as IWebDriver;
+        }
+
 
         [Given(@"Que o usuário esteja na página de login")]
         public void DadoQueOUsuarioEstejaNaPaginaDeLogin()
         {
-            var outPutDirectory =
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            _driver = new ChromeDriver(outPutDirectory);
             _driver.Navigate().GoToUrl("https://www.saucedemo.com/");
 
             var LoginButtonLocator = By.ClassName("btn_action");
@@ -31,6 +34,7 @@ namespace SeleniumCore.Steps
 
         }
         
+        [Given(@"Informar as credenciais corretamente")]
         [When(@"Informar as credenciais corretamente")]
         public void QuandoInformarAsCredenciaisCorretamente()
         {
@@ -85,14 +89,13 @@ namespace SeleniumCore.Steps
         public void EntaoSeraRedirecionadoParaATelaDeProdutos()
         {
             Assert.IsTrue(_driver.Url.Contains("inventory.html"));
-            _driver.Quit();
         }
         
         [Then(@"Será exibida uma mensagem informando o erro")]
         public void EntaoSeraExibidaUmaMensagemInformandoOErro()
         {
             Assert.IsTrue(_driver.FindElement(By.ClassName("error-button")).Displayed);
-            _driver.Quit();
+
         }
     }
 }

@@ -119,16 +119,22 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 4
- testRunner.Given("que o usuário está no carrinho de compras", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dado ");
+ testRunner.Given("Que o usuário esteja na página de login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dado ");
 #line hidden
 #line 5
- testRunner.And("que o usuário não adicionou itens no carrinho", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+ testRunner.And("Informar as credenciais corretamente", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line hidden
 #line 6
- testRunner.When("Clicar no botão checkout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+ testRunner.And("que o usuário está no carrinho de compras", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line hidden
 #line 7
- testRunner.Then("O sistema solicitará as os dados de entrega", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+ testRunner.When("usuário não adicionar itens no carrinho", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+#line hidden
+#line 8
+ testRunner.And("Clicar no botão checkout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line hidden
+#line 9
+ testRunner.Then("O sistema não solicitará as os dados de entrega", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -138,7 +144,7 @@ this.ScenarioInitialize(scenarioInfo);
         {
             string[] tagsOfScenario = exampleTags;
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Carrinho com itens", null, exampleTags);
-#line 10
+#line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -158,16 +164,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 11
- testRunner.Given("que o usuário está no carrinho de compras", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dado ");
-#line hidden
-#line 12
- testRunner.And(string.Format("que o usuário adicionou no carrinho uma \"{0}\":", quantidade), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
-#line hidden
 #line 13
- testRunner.When("Clicar no botão checkout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+ testRunner.Given("Que o usuário esteja na página de login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dado ");
 #line hidden
 #line 14
+ testRunner.When("Informar as credenciais corretamente", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+#line hidden
+#line 15
+ testRunner.And(string.Format("que o usuário adicionou no carrinho uma \"{0}\":", quantidade), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line hidden
+#line 16
+ testRunner.And("Clicar no botão checkout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+#line hidden
+#line 17
  testRunner.Then("O sistema solicitará as os dados de entrega", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
 #line hidden
             }
@@ -181,7 +190,7 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:quantidade", "1")]
         public virtual void CarrinhoComItens_1()
         {
-#line 10
+#line 12
 this.CarrinhoComItens("1", ((string[])(null)));
 #line hidden
         }
@@ -193,7 +202,7 @@ this.CarrinhoComItens("1", ((string[])(null)));
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:quantidade", "3")]
         public virtual void CarrinhoComItens_3()
         {
-#line 10
+#line 12
 this.CarrinhoComItens("3", ((string[])(null)));
 #line hidden
         }
