@@ -1,10 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using SeleniumCore.Hooks;
 using SeleniumExtras.WaitHelpers;
 using System;
+using System.Configuration;
 using System.IO;
 using System.Reflection;
 using TechTalk.SpecFlow;
@@ -14,18 +16,26 @@ namespace SeleniumCore.Steps
     [Binding]
     public class LoginSteps 
     {
-
+        IConfigurationRoot appsettings;
+        String url;
+        String username;
+        String password;
         IWebDriver _driver;
         public LoginSteps(ScenarioContext scenarioContext)
         {
             _driver = scenarioContext["WEB_DRIVER"] as IWebDriver;
+            appsettings = scenarioContext["APP_SETTINGS"] as IConfigurationRoot;
+
+            url = appsettings.GetSection("baseUrl:url").Value;
+            username = appsettings.GetSection("credenciais:username").Value;
+            password = appsettings.GetSection("credenciais:password").Value;
         }
 
 
         [Given(@"Que o usuário esteja na página de login")]
         public void DadoQueOUsuarioEstejaNaPaginaDeLogin()
         {
-            _driver.Navigate().GoToUrl("https://www.saucedemo.com/");
+            _driver.Navigate().GoToUrl(url);
 
             var LoginButtonLocator = By.ClassName("btn_action");
             var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
@@ -39,12 +49,12 @@ namespace SeleniumCore.Steps
         public void QuandoInformarAsCredenciaisCorretamente()
         {
 
-            var username = _driver.FindElement(By.Id("user-name"));
-            var password = _driver.FindElement(By.Id("password"));
+            var inputUsername = _driver.FindElement(By.Id("user-name"));
+            var inputPassword = _driver.FindElement(By.Id("password"));
             var loginButton = _driver.FindElement(By.ClassName("btn_action"));
 
-            username.SendKeys("standard_user");
-            password.SendKeys("secret_sauce");
+            inputUsername.SendKeys(username);
+            inputPassword.SendKeys(password);
             loginButton.Click();
 
         }
@@ -52,33 +62,33 @@ namespace SeleniumCore.Steps
         [When(@"Informar as credenciais ""(.*)""")]
         public void QuandoInformarAsCredenciais(string incorretas)
         {
-            var username = _driver.FindElement(By.Id("user-name"));
-            var password = _driver.FindElement(By.Id("password"));
+            var inputUsername = _driver.FindElement(By.Id("user-name"));
+            var inputPassword = _driver.FindElement(By.Id("password"));
             var loginButton = _driver.FindElement(By.ClassName("btn_action"));
 
             switch (incorretas)
             {
                 case "username vazio":
-                    username.SendKeys("");
-                    password.SendKeys("secret_sauce");
+                    inputUsername.SendKeys("");
+                    inputPassword.SendKeys("secret_sauce");
                     loginButton.Click();
                     break;
 
                 case "username invalido":
-                    username.SendKeys("incorreto");
-                    password.SendKeys("secret_sauce");
+                    inputUsername.SendKeys("incorreto");
+                    inputPassword.SendKeys("secret_sauce");
                     loginButton.Click();
                     break;
 
                 case "password vazio":
-                    username.SendKeys("standard-user");
-                    password.SendKeys("");
+                    inputUsername.SendKeys("standard-user");
+                    inputPassword.SendKeys("");
                     loginButton.Click();
                     break;
 
                 case "password invalido":
-                    username.SendKeys("standard-user");
-                    password.SendKeys("incorreto");
+                    inputUsername.SendKeys("standard-user");
+                    inputPassword.SendKeys("incorreto");
                     loginButton.Click();
                     break;
             }

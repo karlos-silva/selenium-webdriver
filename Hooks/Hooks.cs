@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using TechTalk.SpecFlow;
 
@@ -32,6 +34,13 @@ namespace SeleniumCore.Hooks
                 Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             _driver = new ChromeDriver(outPutDirectory);
             scenarioContext["WEB_DRIVER"] = _driver;
+
+            var ambiente = msContext.Properties["ambiente"].ToString();
+
+            var appsettings = new ConfigurationBuilder().AddJsonFile(outPutDirectory+"\\appsettings." + ambiente + ".json").Build();
+
+            scenarioContext["APP_SETTINGS"] = appsettings;
+
         }
 
         [AfterScenario]
