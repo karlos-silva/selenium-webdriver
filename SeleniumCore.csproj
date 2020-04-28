@@ -24,8 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Pages\" />
+    <Folder Include="TestResults\" />
   </ItemGroup>
 
   <ItemGroup>

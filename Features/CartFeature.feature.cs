@@ -29,7 +29,7 @@ namespace SeleniumCore.Features
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "CarrinhoDeCompras.feature"
+#line 1 "CartFeature.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -125,7 +125,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Informar as credenciais corretamente", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line hidden
 #line 6
- testRunner.And("que o usuário está no carrinho de compras", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
+ testRunner.And("que o usuário está na tela de produtos", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "E ");
 #line hidden
 #line 7
  testRunner.When("usuário não adicionar itens no carrinho", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");

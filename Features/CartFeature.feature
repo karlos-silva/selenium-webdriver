@@ -3,7 +3,7 @@
 Cenário: Carrinho Vazio
 	Dado Que o usuário esteja na página de login
 	E Informar as credenciais corretamente
-	E que o usuário está no carrinho de compras
+	E que o usuário está na tela de produtos
 	Quando usuário não adicionar itens no carrinho
 	E Clicar no botão checkout
 	Então O sistema não solicitará as os dados de entrega

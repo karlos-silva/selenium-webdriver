@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +18,7 @@ namespace SeleniumCore.Hooks
     public class Hooks
     {
         private IWebDriver _driver;
+        private WebDriverWait _wait;
         public static ScenarioContext _scenarioContext { get; set; }
         static FeatureContext _featureContext { get; set; }
         static ScenarioStepContext _stepContext { get; set; }
@@ -32,8 +34,12 @@ namespace SeleniumCore.Hooks
 
             var outPutDirectory =
                 Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
             _driver = new ChromeDriver(outPutDirectory);
+            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+
             scenarioContext["WEB_DRIVER"] = _driver;
+            scenarioContext["DRIVER_WAIT"] = _wait;
 
             var ambiente = msContext.Properties["ambiente"].ToString();
 

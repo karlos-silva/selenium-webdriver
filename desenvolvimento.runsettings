@@ -4,7 +4,7 @@
   <RunConfiguration>
     <MaxCpuCount>1</MaxCpuCount>
     <!-- Path relative to directory that contains .runsettings file-->
-    <ResultsDirectory>.\TestResults</ResultsDirectory>
+    <ResultsDirectory>%temp%\TestResults</ResultsDirectory>
 
     <!-- x86 or x64 -->
     <!-- You can also change it from the Test menu; choose "Processor Architecture for AnyCPU Projects" -->
@@ -18,7 +18,7 @@
 
     <!-- TestSessionTimeout was introduced in Visual Studio 2017 version 15.5 -->
     <!-- Specify timeout in milliseconds. A valid value should be greater than 0 -->
-    <TestSessionTimeout>10000</TestSessionTimeout>
+    <TestSessionTimeout>100000</TestSessionTimeout>
   </RunConfiguration>
 
   <!-- Configurations for data collectors -->
