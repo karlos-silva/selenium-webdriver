@@ -11,11 +11,13 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using TechTalk.SpecFlow;
+using SeleniumCore.Utils;
+using SeleniumCore.Hooks;
 
 namespace SeleniumCore.Hooks
 {
     [Binding]
-    public class Hooks
+    public class Hooks 
     {
         private IWebDriver _driver;
         private WebDriverWait _wait;
@@ -23,6 +25,9 @@ namespace SeleniumCore.Hooks
         static FeatureContext _featureContext { get; set; }
         static ScenarioStepContext _stepContext { get; set; }
         public static TestContext msContext { get; set; }
+        private CommonSystemMethods utils => new CommonSystemMethods();
+        private WebDriver webDriver => new WebDriver();
+        string driverType;
 
 
         [BeforeScenario]
@@ -32,10 +37,9 @@ namespace SeleniumCore.Hooks
             _scenarioContext = scenarioContext;
             msContext = _scenarioContext.ScenarioContainer.Resolve<TestContext>();
 
-            var outPutDirectory =
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            driverType = msContext.Properties["driver"].ToString();
+            _driver = webDriver.DriverSelector(driverType);
 
-            _driver = new ChromeDriver(outPutDirectory);
             _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
 
             scenarioContext["WEB_DRIVER"] = _driver;
@@ -43,7 +47,7 @@ namespace SeleniumCore.Hooks
 
             var ambiente = msContext.Properties["ambiente"].ToString();
 
-            var appsettings = new ConfigurationBuilder().AddJsonFile(outPutDirectory+"\\appsettings." + ambiente + ".json").Build();
+            var appsettings = new ConfigurationBuilder().AddJsonFile(utils.GetProjectPath()+"\\appsettings." + ambiente + ".json").Build();
 
             scenarioContext["APP_SETTINGS"] = appsettings;
 
@@ -53,6 +57,7 @@ namespace SeleniumCore.Hooks
         public void AfterScenario()
         {
             _driver.Quit();
+            utils.KillProccess(driverType);
         }
     }
 }
