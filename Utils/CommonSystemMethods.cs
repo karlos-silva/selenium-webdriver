@@ -14,13 +14,5 @@ namespace SeleniumCore.Utils
             return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         }
 
-        public void KillProccess(string processName)
-        {
-            Process[] DriverProcesses = Process.GetProcessesByName(processName);
-            foreach (var Process in DriverProcesses)
-            {
-                Process.Kill();
-            }
-        }
     }
 }

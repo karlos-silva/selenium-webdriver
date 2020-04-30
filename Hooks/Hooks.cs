@@ -57,7 +57,6 @@ namespace SeleniumCore.Hooks
         public void AfterScenario()
         {
             _driver.Quit();
-            utils.KillProccess(driverType);
         }
     }
 }
