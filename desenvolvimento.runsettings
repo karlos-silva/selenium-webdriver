@@ -63,7 +63,8 @@
     <Parameter name="webAppUserName" value="Admin" />
     <Parameter name="webAppPassword" value="Password" />
 	<Parameter name="ambiente" value="desenvolvimento"/>
-	<Parameter name="driver" value="chrome"/>
+	<Parameter name="browser" value="chrome"/>
+	<Parameter name="driver" value="remote"/>
   </TestRunParameters>
 
   <!-- Adapter Specific sections -->

@@ -27,7 +27,7 @@ namespace SeleniumCore.Hooks
         public static TestContext msContext { get; set; }
         private CommonSystemMethods utils => new CommonSystemMethods();
         private WebDriver webDriver => new WebDriver();
-        string driverType;
+        string browser, driverType;
 
 
         [BeforeScenario]
@@ -37,8 +37,10 @@ namespace SeleniumCore.Hooks
             _scenarioContext = scenarioContext;
             msContext = _scenarioContext.ScenarioContainer.Resolve<TestContext>();
 
+            browser = msContext.Properties["browser"].ToString();
             driverType = msContext.Properties["driver"].ToString();
-            _driver = webDriver.DriverSelector(driverType);
+
+            _driver = webDriver.DriverSelector(driverType, browser);
 
             _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
 
