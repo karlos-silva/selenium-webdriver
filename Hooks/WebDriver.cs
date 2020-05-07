@@ -55,7 +55,7 @@ namespace SeleniumCore.Hooks
         private IWebDriver BuildRemoteDriver(string browser)
         {
 
-            var hubUri = new Uri("http://localhost:2222/wd/hub");
+            var hubUri = new Uri("http://192.168.99.100:4444/wd/hub");
 
             switch (browser)
             {
@@ -63,7 +63,7 @@ namespace SeleniumCore.Hooks
                     var chromeOptions = new ChromeOptions();
                     chromeOptions.AddArgument("headless");
                     chromeOptions.AddArgument("disable-gpu");
-                    chromeOptions.PlatformName = "WINDOWS";
+                    //chromeOptions.PlatformName = "WINDOWS";
                     chromeOptions.AddArgument("--start-maximized");
 
                     _driver = new RemoteWebDriver(hubUri, chromeOptions);
@@ -73,7 +73,7 @@ namespace SeleniumCore.Hooks
                     var firefoxOptions = new FirefoxOptions();
                     firefoxOptions.AddArgument("headless");
                     firefoxOptions.AddArgument("disable-gpu");
-                    firefoxOptions.PlatformName = "WINDOWS";
+                    //firefoxOptions.PlatformName = "WINDOWS";
                     firefoxOptions.AddArgument("--start-maximized");
 
                     _driver = new RemoteWebDriver(hubUri, firefoxOptions);

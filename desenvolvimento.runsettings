@@ -13,14 +13,14 @@
     <!-- Framework35 | [Framework40] | Framework45 -->
     <TargetFrameworkVersion>FrameworkCore10</TargetFrameworkVersion>
 
-    <!-- Path to Test Adapters -->
-    <TestAdaptersPaths>%SystemDrive%\Temp\foo;%SystemDrive%\Temp\bar</TestAdaptersPaths>
+    <!-- Path to Test Adapters 
+    <TestAdaptersPaths>%SystemDrive%\Temp;%SystemDrive%\Temp</TestAdaptersPaths> -->
 
     <!-- TestSessionTimeout was introduced in Visual Studio 2017 version 15.5 -->
     <!-- Specify timeout in milliseconds. A valid value should be greater than 0 -->
     <TestSessionTimeout>0</TestSessionTimeout>
 
-	<DisableParallelization>false</DisableParallelization>
+    <DisableParallelization>false</DisableParallelization>
   </RunConfiguration>
 
   <!-- Configurations for data collectors -->
@@ -49,7 +49,8 @@
         <!--Video data collector was introduced in Visual Studio 2017 version 15.5 -->
         <Configuration>
           <!-- Set "sendRecordedMediaForPassedTestCase" to "false" to add video attachments to failed tests only -->
-          <MediaRecorder sendRecordedMediaForPassedTestCase="true"  xmlns="">           ​
+          <MediaRecorder sendRecordedMediaForPassedTestCase="true"  xmlns="">
+            ​
             <ScreenCaptureVideo bitRate="512" frameRate="2" quality="20" />​
           </MediaRecorder>​
         </Configuration>
@@ -62,9 +63,9 @@
     <Parameter name="webAppUrl" value="http://localhost" />
     <Parameter name="webAppUserName" value="Admin" />
     <Parameter name="webAppPassword" value="Password" />
-	<Parameter name="ambiente" value="desenvolvimento"/>
-	<Parameter name="browser" value="chrome"/>
-	<Parameter name="driver" value="remote"/>
+    <Parameter name="ambiente" value="desenvolvimento"/>
+    <Parameter name="browser" value="chrome"/>
+    <Parameter name="driver" value="remote"/>
   </TestRunParameters>
 
   <!-- Adapter Specific sections -->
@@ -78,10 +79,10 @@
     <AssemblyResolution>
       <Directory path="D:\myfolder\bin\" includeSubDirectories="false"/>
     </AssemblyResolution>
-	  <Parallelize>
-		  <Workers>0</Workers>
-		  <Scope>ClassLevel</Scope>
-	  </Parallelize>
+    <Parallelize>
+      <Workers>0</Workers>
+      <Scope>ClassLevel</Scope>
+    </Parallelize>
   </MSTest>
 
 </RunSettings>
