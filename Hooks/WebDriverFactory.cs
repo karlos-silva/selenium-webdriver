@@ -10,25 +10,34 @@ using SeleniumCore.Utils;
 using OpenQA.Selenium.Remote;
 using Gherkin.Ast;
 using System.Security.Policy;
+using TechTalk.SpecFlow;
+
 
 namespace SeleniumCore.Hooks
 {
 
-    public class WebDriver
+    public class WebDriverFactory
     {
         IWebDriver _driver;
+        private ScenarioContext scenarioContext;
         CommonSystemMethods utils => new CommonSystemMethods();
+        string browser, driverType, deviceName;
 
-        public WebDriver()
+        public WebDriverFactory(ScenarioContext scenarioContext)
+        {
+            this.scenarioContext = scenarioContext;
+        }
+
+        public WebDriverFactory()
         {
 
         }
-        
+
 
         public IWebDriver DriverSelector(string type, string browser)
         {
-            
-            if(type == "local")
+
+            if (type == "local")
             {
                 switch (browser)
                 {
@@ -41,7 +50,7 @@ namespace SeleniumCore.Hooks
                 }
                 return _driver;
             }
-            else if(type == "remote")
+            else if (type == "remote")
             {
 
                 BuildRemoteDriver(browser);
@@ -55,19 +64,19 @@ namespace SeleniumCore.Hooks
         private IWebDriver BuildRemoteDriver(string browser)
         {
 
-            var hubUri = new Uri("http://localhost:2222/wd/hub");
+            var hubUri = new Uri("http://localhost:4444/wd/hub");
 
             switch (browser)
             {
                 case "chrome":
                     var chromeOptions = new ChromeOptions();
-                    chromeOptions.AddArgument("headless");
                     chromeOptions.AddArgument("disable-gpu");
                     chromeOptions.PlatformName = "WINDOWS";
                     chromeOptions.AddArgument("--start-maximized");
+                    chromeOptions.EnableMobileEmulation("BlackBerry Z30");
+
 
                     _driver = new RemoteWebDriver(hubUri, chromeOptions);
-                    
                     break;
                 case "firefox":
                     var firefoxOptions = new FirefoxOptions();
@@ -82,5 +91,6 @@ namespace SeleniumCore.Hooks
 
             return _driver;
         }
+
     }
 }

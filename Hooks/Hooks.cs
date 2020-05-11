@@ -26,7 +26,7 @@ namespace SeleniumCore.Hooks
         static ScenarioStepContext _stepContext { get; set; }
         public static TestContext msContext { get; set; }
         private CommonSystemMethods utils => new CommonSystemMethods();
-        private WebDriver webDriver => new WebDriver();
+        private WebDriverFactory webDriver => new WebDriverFactory();
         string browser, driverType;
 
 
