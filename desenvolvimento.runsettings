@@ -64,7 +64,7 @@
     <Parameter name="webAppPassword" value="Password" />
 	<Parameter name="ambiente" value="desenvolvimento"/>
 	<Parameter name="browser" value="chrome"/>
-	<Parameter name="driver" value="remote"/>
+	<Parameter name="driver" value="local"/>
   </TestRunParameters>
 
   <!-- Adapter Specific sections -->

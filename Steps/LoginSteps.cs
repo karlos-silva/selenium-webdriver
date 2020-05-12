@@ -100,12 +100,14 @@ namespace SeleniumCore.Steps
         public void EntaoSeraRedirecionadoParaATelaDeProdutos()
         {
             Assert.IsTrue(_driver.Url.Contains("inventory.html"));
+            login.TakeScreenShoot();
         }
         
         [Then(@"Será exibida uma mensagem informando o erro")]
         public void EntaoSeraExibidaUmaMensagemInformandoOErro()
         {
             Assert.IsTrue(login.ExisteBtnError());
+            login.TakeScreenShoot();
         }
     }
 }

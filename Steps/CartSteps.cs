@@ -60,6 +60,7 @@ namespace SeleniumCore.Steps
         public void EntaoOSistemaSolicitaraAsOsDadosDeEntrega()
         {
             Assert.IsTrue(_driver.Url.Contains("checkout-step-one.html"));
+            cart.TakeScreenShoot();
 
         }
 
@@ -67,7 +68,7 @@ namespace SeleniumCore.Steps
         public void EntaoOSistemaNaoSolicitaraAsOsDadosDeEntrega()
         {
             Assert.IsFalse(checkout.ExisteCheckoutContainer(),"Formulário de Dados de Entrega foi exibido");
-
+            cart.TakeScreenShoot();
         }
 
     }

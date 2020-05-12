@@ -13,6 +13,7 @@ namespace SeleniumCore.Controllers
         IWebDriver _driver;
         CartPage cartpage;
         ScenarioContext scenarioContext;
+        private CommonSystemMethods utils => new CommonSystemMethods();
 
         public CartController(ScenarioContext scenarioContext) : base(scenarioContext)
         {
@@ -50,8 +51,12 @@ namespace SeleniumCore.Controllers
             return new CheckoutController(scenarioContext);
         }
 
+        public void TakeScreenShoot()
+        {
+            utils.TakeScreenShoot(_driver, "ScreenshotCarrinho");
+        }
 
-  
+
     }
 
 }

@@ -16,6 +16,7 @@ namespace SeleniumCore.Controllers
         private IWebDriver _driver;
         LoginPage loginPage;
         ScenarioContext scenarioContext;
+        private CommonSystemMethods utils => new CommonSystemMethods();
 
         public LoginController(ScenarioContext scenarioContext) : base(scenarioContext)
         {
@@ -50,6 +51,11 @@ namespace SeleniumCore.Controllers
         public bool ExisteBtnError()
         {
             return ExisteElemento(loginPage.btnError, _driver);
+        }
+
+        public void TakeScreenShoot()
+        {
+            utils.TakeScreenShoot(_driver, "ScreenshotLogin");
         }
     }
 }
