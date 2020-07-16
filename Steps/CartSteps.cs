@@ -59,16 +59,16 @@ namespace SeleniumCore.Steps
         [Then(@"O sistema solicitará as os dados de entrega")]
         public void EntaoOSistemaSolicitaraAsOsDadosDeEntrega()
         {
-            Assert.IsTrue(_driver.Url.Contains("checkout-step-one.html"));
             cart.TakeScreenShoot();
+            Assert.IsTrue(_driver.Url.Contains("checkout-step-one.html"));
 
         }
 
         [Then(@"O sistema não solicitará as os dados de entrega")]
         public void EntaoOSistemaNaoSolicitaraAsOsDadosDeEntrega()
         {
-            Assert.IsFalse(checkout.ExisteCheckoutContainer(),"Formulário de Dados de Entrega foi exibido");
             cart.TakeScreenShoot();
+            Assert.IsFalse(checkout.ExisteCheckoutContainer(),"Formulário de Dados de Entrega foi exibido");
         }
 
     }
